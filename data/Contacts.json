@@ -1,0 +1,11 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Contact",
+                "referenceId": "ContactRef1"
+            },
+            "Name": "One Patient"
+        }
+    ]
+}

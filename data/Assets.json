@@ -1,0 +1,14 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Asset",
+                "referenceId": "AssetRef1"
+            },
+            "Name": "Bed #1",
+            "Status": "Installed",
+            "SerialNumber": "BED-123456",
+            "AccountId": "@AccountRef1"
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+SELECT Name, (
+    SELECT Name, Status, SerialNumber
+    FROM Assets
+) FROM ACCOUNT
+ORDER BY Name

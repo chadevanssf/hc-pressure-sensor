@@ -1,0 +1,16 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Patient_State__c",
+                "referenceId": "Patient_State__cRef1"
+            },
+            "Name": "PS-0000",
+            "Current_State__c": "Active",
+            "PatientId__c": "MRN-123456",
+            "Orientation__c": "Active",
+            "Time_in_Position__c": 0,
+            "Contact__c": "@ContactRef1"
+        }
+    ]
+}

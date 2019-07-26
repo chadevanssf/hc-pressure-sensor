@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mobile</fullName>
+    <fields>Current_State__c</fields>
+    <fields>PatientId__c</fields>
+    <fields>Contact__c</fields>
+    <fields>Asset__c</fields>
+    <label>Mobile</label>
+</CompactLayout>

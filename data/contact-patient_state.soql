@@ -1,0 +1,5 @@
+SELECT Name, (
+    SELECT Name, Current_State__c, PatientId__c, Orientation__c, Time_in_Position__c
+    FROM Patient_States__r
+) FROM Contact
+ORDER BY Name
