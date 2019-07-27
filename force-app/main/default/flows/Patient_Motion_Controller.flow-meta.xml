@@ -738,7 +738,7 @@
         <dataType>String</dataType>
         <expression>{!$Organization.Name}</expression>
     </formulas>
-    <interviewLabel>Patient_Motion_Controller-1_InterviewLabel</interviewLabel>
+    <interviewLabel>Patient_Motion_Controller-2_InterviewLabel</interviewLabel>
     <label>Patient Motion Controller</label>
     <loops>
         <name>eventContextCheckLoop</name>

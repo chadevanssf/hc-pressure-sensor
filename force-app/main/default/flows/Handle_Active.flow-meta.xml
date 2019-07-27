@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <assignments>
+        <name>Update_Patient_State_Status</name>
+        <label>Update Patient State Status</label>
+        <locationX>736</locationX>
+        <locationY>253</locationY>
+        <assignmentItems>
+            <assignToReference>Active_Patient_State.Display_Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>displayStatus</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Patient_State</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Update_State</name>
         <label>Update State</label>
         <locationX>517</locationX>
         <locationY>412</locationY>
         <assignmentItems>
+            <assignToReference>Active_Patient_State.Orientation__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Active</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
             <assignToReference>Active_Patient_State.Time_in_Position__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Active_Patient_State.Current_State__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Active</stringValue>
             </value>
         </assignmentItems>
         <connector>
@@ -43,7 +73,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Update_Patient_State</targetReference>
+            <targetReference>Adjusted_Patient_Pressure_Flow</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -73,14 +103,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Update_Patient_State</targetReference>
+            <targetReference>Adjusted_Patient_Pressure_Flow</targetReference>
         </connector>
     </assignments>
     <decisions>
         <name>Handle_Orientation</name>
         <label>Handle Orientation</label>
         <locationX>196</locationX>
-        <locationY>217</locationY>
+        <locationY>216</locationY>
         <defaultConnector>
             <targetReference>Update_State</targetReference>
         </defaultConnector>
@@ -163,6 +193,32 @@
     </recordUpdates>
     <startElementReference>Get_Patient_State</startElementReference>
     <status>Active</status>
+    <subflows>
+        <name>Adjusted_Patient_Pressure_Flow</name>
+        <label>Adjusted Patient Pressure Flow</label>
+        <locationX>736</locationX>
+        <locationY>116</locationY>
+        <connector>
+            <targetReference>Update_Patient_State_Status</targetReference>
+        </connector>
+        <flowName>Patient_Pressure_Notification</flowName>
+        <inputAssignments>
+            <name>patientId</name>
+            <value>
+                <elementReference>patientId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>targetState</name>
+            <value>
+                <stringValue>Adjusted</stringValue>
+            </value>
+        </inputAssignments>
+        <outputAssignments>
+            <assignToReference>displayStatus</assignToReference>
+            <name>displayStatus</name>
+        </outputAssignments>
+    </subflows>
     <variables>
         <name>Active_Patient_State</name>
         <dataType>SObject</dataType>
@@ -170,6 +226,13 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Patient_State__c</objectType>
+    </variables>
+    <variables>
+        <name>displayStatus</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>lastmotion</name>
