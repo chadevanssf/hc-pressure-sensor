@@ -1,21 +1,25 @@
 # hc-pressure-sensor
 
-Health Cloud Pressure Sensor package
+Health Cloud Pressure Sensor package, simulating IOT type devices
 
 ## Install
 
+```sh
 sfdx force:user:permset:assign -n PressureSensor
 sfdx force:data:tree:import -p ./data/Account-Asset-plan.json
 sfdx force:data:tree:import -p ./data/Contact-Patient_State__c-plan.json
+```
 
 ## Dev
 
+```sh
 sfdx force:data:tree:export -p -q ./data/account-asset.soql -d ./data/
 sfdx force:data:tree:export -p -q ./data/contact-patient_state.soql -d ./data/
-
+```
 
 ## Test
 
+```sh
 List<SObject> events = new List<SObject>();
 
 // Patient Motion
@@ -43,3 +47,4 @@ ppEvent.Message__c = '{"laying":"hide","escalate":"hide","adjusted":"hide"}';
 events.add(ppEvent);
         
 List<Database.SaveResult> results = EventBus.publish(events);
+```
