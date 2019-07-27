@@ -16,13 +16,30 @@ sfdx force:data:tree:export -p -q ./data/contact-patient_state.soql -d ./data/
 
 ## Test
 
-Patient_Motion__e  newEvent = new Patient_Motion__e();
-newEvent.PatientID__c = 'MRN-123456';
-//newEvent.Orientation__c = 'LAYING';
-newEvent.Orientation__c = 'ACTIVE';
-newEvent.LastMotion__c = 90;
-
 List<SObject> events = new List<SObject>();
-events.add(newEvent);
+
+// Patient Motion
+Patient_Motion__e pmEvent = new Patient_Motion__e();
+pmEvent.PatientID__c = 'MRN-123456';
+pmEvent.Orientation__c = 'ACTIVE';
+//pmEvent.Orientation__c = 'SITTING';
+//pmEvent.Orientation__c = 'LAYING';
+pmEvent.LastMotion__c = 90;
+
+events.add(pmEvent);
+        
+//List<Database.SaveResult> results = EventBus.publish(events);
+
+//List<SObject> events = new List<SObject>();
+
+// Patient Pressure
+Patient_Pressure__e ppEvent = new Patient_Pressure__e();
+ppEvent.PatientId__c = 'MRN-123456';
+ppEvent.Message__c = '{"laying":"hide","escalate":"hide","adjusted":"hide"}';
+//ppEvent.Message__c = '{"laying":"show","escalate":"hide","adjusted":"hide"}';
+//ppEvent.Message__c = '{"laying":"hide","escalate":"show","adjusted":"hide"}';
+//ppEvent.Message__c = '{"laying":"hide","escalate":"hide","adjusted":"show"}';
+
+events.add(ppEvent);
         
 List<Database.SaveResult> results = EventBus.publish(events);
